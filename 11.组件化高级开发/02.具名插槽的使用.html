@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zn-CN">
+
+	<head>
+
+		<meta charset="UTF-8">
+		<title>Title</title>
+
+	</head>
+
+	<body>
+
+	<div id="app">
+
+		<!-- 具名插槽：当子组件的功能复杂时，子组件的插槽可能并非是一个。
+				给插槽插入内容时，为区分插入的是哪个，可以给插槽起一个名字。 -->
+		<!-- 具名插槽的使用：首先在子组件模板给 slot 标签设置 name 属性，
+				然后使用子组件时用 template 标签，
+				通过给 template 标签的 v-slot 属性声明对应 slot 标签 name 属性值来绑定插槽。
+				注意； v-slot 只能添加在 <template> 上。  -->
+
+		<cpn>
+			<template v-slot:left>左边按钮被替换了</template>
+		</cpn>
+
+		<!-- 语法糖缩写写法。 -->
+		<cpn>
+			<template #right>右边按钮被替换了</template>
+		</cpn>
+
+	</div>
+
+	<script src="../vue.js"></script>
+
+	<template id="cpn">
+		<div>
+			<h2>这是标题</h2>
+			<p>内容</p>
+			<slot name="left"><button>左边</button></slot>
+			<slot name="center"><button>中间</button></slot>
+			<slot name="right"><button>右边</button></slot>
+		</div>
+	</template>
+
+	<script>
+		const app = new Vue({
+			el: '#app',
+			data: {
+				message: '你好啊'
+			},
+			components: {
+				cpn: {
+					template: `#cpn`
+				}
+			}
+		})
+	</script>
+
+	</body>
+
+</html>

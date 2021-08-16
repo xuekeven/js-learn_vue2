@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html lang="zn-CN">
+
+  <head>
+  
+    <meta charset="UTF-8">
+    <title>Title</title>
+    
+  </head>
+    
+  <body>
+  
+    <div id="app">
+      <h2>{{fullName}}</h2>
+	    <h2>{{fullNameSimple}}</h2>
+    </div>
+
+    <script src="../vue.js"></script>
+
+    <script>
+      const app = new Vue({
+        el: '#app',
+	      data: {
+		      firstname: 'Xue',
+		      lastname: 'Kai'
+	      },
+	      computed: {
+		      // 计算属性完整写法，可以看出计算属性本质是属性不是函数。
+					// 所有 getter 和 setter 的 this 上下文自动地绑定为 Vue 实例。
+        	fullName: {
+        		set: function (newName) {
+        			const names = newName.split(' ');
+        			this.firstname = names[0];
+        			this.lastname = names[1];
+		        },
+		        get: function () {
+        			return this.firstname + ' ' + this.lastname
+		        }
+	        },
+		      // 计算属性的简略写法。计算属性 99% 没有 set 方法，是只读属性。
+		      fullNameSimple: function () {
+				      return this.firstname + ' ' + this.lastname
+			      }
+		      }
+      })
+    </script>
+    
+  </body>
+    
+</html>

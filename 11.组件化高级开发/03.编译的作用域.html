@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zn-CN">
+
+  <head>
+  
+    <meta charset="UTF-8">
+    <title>Title</title>
+    
+  </head>
+    
+  <body>
+  
+    <div id="app">
+
+      <!-- 编译作用域：父组件模板的所有东西都会在父级作用域内编译；
+          子组件模板的所有东西都会在子级作用域内编译。
+          父子组件范围内的数据不相互使用。 -->
+      <!-- 下面组件是在 Vue 实例（父组件）内编译。
+	        使用实例的 isShow，不使用父组件的 isShow，会显示。-->
+      <cpn v-show="isShow"></cpn>
+    </div>
+
+    <script src="../vue.js"></script>
+
+    <template id="cpn">
+	    <div>
+		    <h2>我是子组件</h2>
+		    <p>这里是内容哦</p>
+        <!-- 下面按钮是在子组件内编译，使用子组件的 isShow，不会显示。  -->
+		    <button v-show="isShow">组件</button>
+	    </div>
+    </template>
+
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {
+          message: '你好啊',
+	        isShow: true
+        },
+	      components: {
+        	cpn: {
+        		template: `#cpn`,
+		        data() {
+        			return {
+				        isShow: false
+			        }
+		        }
+	        }
+	      }
+      })
+    </script>
+    
+  </body>
+    
+</html>

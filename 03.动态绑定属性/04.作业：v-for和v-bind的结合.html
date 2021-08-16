@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html lang="zn-CN">
+
+  <head>
+  
+    <meta charset="UTF-8">
+    <title>Title</title>
+	  <style>
+		  .active {
+			  color: red;
+		  }
+	  </style>
+    
+  </head> 
+    
+  <body>
+		<!--需求：点击列表中哪项，对应该项文字变红-->
+    <div id="app">
+	    <ul>
+		    <li v-for="(item,index) in movies" :class="{active:currentIndex === index}"
+		        @click="change(index)" >{{item}}</li>
+	    </ul>
+    </div>
+
+    <script src="../vue.js"></script>
+
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {
+          message: '你好啊',
+	        movies: ['肖申克的救赎','中国医生','霸王别姬','风声','中国机长'],
+	        currentIndex: 0,
+        },
+	      methods: {
+        	change(index) {
+        		this.currentIndex = index;
+	        }
+	      }
+      })
+    </script>
+    
+  </body>
+    
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html lang="zn-CN">
+
+  <head>
+
+    <meta charset="UTF-8">
+    <title>Mustache语法</title>
+
+  </head>
+    
+  <body>
+
+	  <div id="app">
+
+			<!-- 数据绑定最常见是使用“Mustache”语法 (双大括号) 文本插值。 -->
+		  <!-- Mustache 语法中(双大括号) ，可以直接写变量，也可以写简单的表达式。 -->
+	    <h2>{{message}}</h2>
+		  <h2>{{message}}，vue</h2>
+		  <h2>{{firstname + ' ' + lastname}}</h2>
+		  <h2>{{firstname}} {{lastname}}</h2>
+		  <h2>{{counter * 5}}</h2>
+
+	  </div>
+
+	  <script src="../vue.js"></script>
+
+	  <script>
+	    const app = new Vue({
+	      el: '#app',
+	      data: {
+	        message: 'Hello',
+		      firstname: 'xue',
+		      lastname: 'kai',
+		      counter: 100
+	      },
+	    })
+	  </script>
+    
+  </body>
+    
+</html>

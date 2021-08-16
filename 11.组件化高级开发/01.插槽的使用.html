@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zn-CN">
+
+  <head>
+  
+    <meta charset="UTF-8">
+    <title>Title</title>
+    
+  </head>
+
+  <body>
+  
+    <div id="app">
+
+      <!-- 组件的插槽：让我们封装的组件更加具有扩展性。让使用者决定组件内部一些内容的展示。
+          封装方式是将共性抽取到组件中，将不同暴露为插槽 slot。
+          预留了插槽，就可以让使用者根据自己的需求决定插槽中插入什么内容。 -->
+		  <!--插槽的基本使用：组件的模板内添加 slot 标签。
+          可以在插槽内添加默认元素。使用组件模板时若不指定插槽内容，则使用默认元素。 -->
+
+	    <!-- 使用插槽默认元素。 -->
+      <cpn></cpn>  
+	    <!-- 插槽内填充一个元素。 -->
+	    <cpn><button>插槽内填充一个元素按钮</button></cpn>
+	    <!-- 插槽内填充多个元素都将显示。 -->
+	    <cpn><button>插槽内填充多个元素按钮1</button><button>插槽内填充多个元素按钮2</button></cpn>
+    </div>
+
+    <script src="../vue.js"></script>
+
+    <!-- 子组件模板。 -->
+    <template id="cpn">
+	    <div>
+		    <h2>这是标题111</h2>
+        <h2>这是标题222</h2>
+		    <!-- 插槽及指定默认元素。 -->
+		    <slot><button>插槽默认按钮</button></slot>
+	    </div>
+    </template>
+
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {     
+        },
+	      components: {
+        	cpn: {
+        		template: `#cpn`,
+            data() {
+              return {
+              }
+            },
+	        }
+	      }
+      })
+    </script>
+  </body>
+</html>

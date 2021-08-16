@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html lang="zn-CN">
+
+  <head>
+  
+    <meta charset="UTF-8">
+    <title>v-pre</title>
+    
+  </head>
+    
+  <body>
+  
+    <div id="app">
+
+      <!-- v-pre 跳过这个元素和它的子元素的编译过程。
+        可以用来显示原始 Mustache 标签。跳过大量没有指令的节点会加快编译。 -->
+	    <h2 v-pre>{{message}}</h2>
+      <h2>{{message}}</h2>
+      <h2 v-pre>message</h2>
+    </div>
+
+    <script src="../vue.js"></script>
+
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {
+          message: '你好啊'
+        },
+      })
+    </script>
+    
+  </body>
+    
+</html>

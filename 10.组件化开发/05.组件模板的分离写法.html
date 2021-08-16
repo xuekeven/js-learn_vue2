@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zn-CN">
+
+  <head>
+  
+    <meta charset="UTF-8">
+    <title>Title</title>
+    
+  </head>
+    
+  <body>
+  
+    <div id="app">
+      <!-- template 模块写法写法比较麻烦，可以将其中的 HTML 分离出来写，
+        然后挂载到对应的组件上。Vue 提供了两种方案来定义 HTML 模块内容：
+          1.使用 <script> 标签；
+          2.使用 <template> 标签。 -->
+      <my-cpn></my-cpn>
+    </div>
+
+    <script src="../vue.js"></script>
+
+		<!-- 分离写法 1：通过 script 标签及其 type 属性、id 属性。 -->
+    <script type="text/x-handlebars-template" id="cpn1">
+	    <div>
+		    <h2>标题1</h2>
+		    <p>内容1，111</p>
+	    </div>
+    </script>
+
+    <!-- 分离写法 2：通过 template 标签及其 id 属性。多用此方法。 -->
+    <template id="cpn2">
+	    <div>
+		    <h2>标题2</h2>
+		    <p>内容2，222</p>
+	    </div>
+    </template>
+
+    <script>
+
+	    Vue.component('myCpn',{
+		    template:`#cpn2`
+	    });
+
+      const app = new Vue({
+        el: '#app',
+        data: {
+        },
+      })
+
+    </script>
+    
+  </body>
+    
+</html>

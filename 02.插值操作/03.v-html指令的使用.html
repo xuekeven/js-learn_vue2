@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html lang="zn-CN">
+
+  <head>
+  
+    <meta charset="UTF-8">
+    <title>v-html</title>
+    
+  </head>
+
+  <body>
+  
+    <div id="app">
+      
+      <!-- v-html 更新元素的 innerHTML 属性。
+        内容按普通 HTML 插入，不会作为 Vue 模板进行编译。 -->
+      <h2>{{message}}</h2>
+      <h2>{{url}}</h2>
+      <h2 v-html="html"></h2>
+	    <h2 v-html="url"></h2>
+    </div>
+
+    <script src="../vue.js"></script>
+
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {
+          message: 'Hello，vue！',
+          html:'<p>innerHTML属性会返回调用它的元素所有后代的 HTML 字符串，包括元素、注释和文本节点。outerHTML属性会返回调用它的元素（及所有后代元素）的 HTML 字符串</p>',
+	        url: '<a href="https://baidu.com">百度一下</a>'
+        },
+      })
+    </script>
+    
+  </body>
+    
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zn-CN">
+
+  <head>
+  
+    <meta charset="UTF-8">
+    <title>Title</title>
+    
+  </head>
+
+  <body>
+
+    <div id="app">
+
+			<!-- 我们拿到 event 的目的可能是进行一些事件处理。
+				Vue 提供了修饰符来帮助我们方便的处理一些事件。可以串联使用多个修饰符。 -->
+
+	    <!-- stop 修饰符：调用 event.stopPropagation()，停止冒泡。 -->
+	    <div @click="divClick()">
+		    AAAAAAAAAA
+		    <button @click.stop="btnClick()">按钮1</button>
+	    </div>
+
+	    <!-- prevent 修饰符：调用 event.preventDefault()，阻止默认行为。-->
+	    <br>
+	    <from action="https://xuekai.cloud">
+		    <input type="submit" value="提交" @click.prevent="submitClick()">
+	    </from>
+
+	    <!-- {keyCode | keyAlias} 修饰符：只当事件是从特定按键触发时才触发回调。-->
+	    <br><br>
+	    <input type="text" @keyup.enter="keyUp()">
+			<input type="text" @keyup.13="keyUp()">
+
+	    <!-- once 修饰符：只触发一次回调。-->
+	    <br><br>
+	    <button @click.once="btn2Click()">按钮2</button>
+
+    </div>
+
+    <script src="../vue.js"></script>
+
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {
+          message: '你好啊'
+        },
+	      methods: {
+        	btnClick() {
+        		console.log('btnClick');
+	        },
+		      divClick() {
+			      console.log('divClick');
+		      },
+		      submitClick() {
+			      console.log('submitClick');
+		      },
+		      keyUp() {
+			      console.log('keyUp');
+		      },
+		      btn2Click() {
+			      console.log('btn2Click');
+		      }
+	      }
+      })
+    </script>
+    
+  </body>
+    
+</html>

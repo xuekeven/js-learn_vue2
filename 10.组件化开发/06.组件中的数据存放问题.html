@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zn-CN">
+
+  <head>
+  
+    <meta charset="UTF-8">
+    <title>Title</title>
+    
+  </head>
+    
+  <body>
+
+  <div id="app">
+	  <my-cpn></my-cpn>
+  </div>
+
+  <script src="../vue.js"></script>
+
+  <template id="cpn2">
+	  <div>
+		  <h2>{{title}}</h2>
+		  <p>内容，呵呵呵 {{message}}</p>
+	  </div>
+  </template>
+
+  <script>
+
+	  Vue.component('myCpn',{
+		  template:`#cpn2`,
+		  // Vue 组件应该有自己保存数据的地方，并且组件不能访问 Vue 实例的数据。
+			// 不仅是数据，也应包括方法、计算属性等。
+		  data() {
+		  	return{
+		  		title: '标题数据在这'
+			  }
+		  }
+	  });
+
+	  const app = new Vue({
+		  el: '#app',
+		  data: {
+			  message: '这是实例',
+		  },
+	  })
+  </script>
+  </body>
+</html>

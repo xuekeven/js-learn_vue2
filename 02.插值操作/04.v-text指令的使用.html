@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html lang="zn-CN">
+
+  <head>
+  
+    <meta charset="UTF-8">
+    <title>v-text</title>
+    
+  </head>
+    
+  <body>
+  
+    <div id="app">
+
+			<!-- v-text 更新元素的 textContent 属性。 -->
+	    <h2 v-text="message"></h2>
+      <!-- 跟下面一样，但不够灵活，不常用。 -->
+      <h2>{{message}}</h2>
+    </div>
+
+    <script src="../vue.js"></script>
+
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {
+          message: '你好啊'
+        },
+      })
+    </script>
+    
+  </body>
+    
+</html>

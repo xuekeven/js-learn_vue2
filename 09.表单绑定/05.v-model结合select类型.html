@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zn-CN">
+
+  <head>
+  
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>label {display: block;}</style>
+    
+  </head>
+    
+  <body>
+
+    <div id="app">
+
+      <!-- select 字段将 value 作为 prop 并将 change 作为事件。
+					下拉列表分为两种情况：单选和多选。 -->
+
+	    <!-- select 单选：
+          v-model 绑定的是一个值。选中选项中的一个时，会将其对应 value 值赋给该值。 -->
+	    <h1>select 单选：</h1>
+      <select name="单选水果" v-model="fruit">
+	      <option value="榴莲" >榴莲</option>
+	      <option value="苹果" >苹果</option>
+	      <option value="香蕉" >香蕉</option>
+	      <option value="西瓜" >西瓜</option>
+      </select>
+	    <h2>您选择是：{{fruit}}</h2>
+
+      <div>---------------------------------------------</div>
+      <!-- select 多选：
+          v-model 绑定的是一个数组。选中选项值时，会将其对应的 value 值添加到数组。 -->
+	    <h1>select 多选：</h1>
+	    <select name="b" v-model="fruits" multiple>
+		    <option value="榴莲" >榴莲</option>
+		    <option value="苹果" >苹果</option>
+		    <option value="香蕉" >香蕉</option>
+		    <option value="西瓜" >西瓜</option>
+	    </select>
+	    <h2>您选择是：{{fruits}}</h2>
+
+    </div>
+
+    <script src="../vue.js"></script>
+
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {
+	        fruit: '',
+	        fruits: []
+        }
+      })
+    </script>
+    
+  </body>
+    
+</html>

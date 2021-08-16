@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zn-CN">
+
+  <head>
+  
+    <meta charset="UTF-8">
+    <title>Title</title>
+    
+  </head>
+    
+  <body>
+  
+    <div id="app">
+			<!-- 组件注册语法糖。
+				省去调用 Vue.extend() 步骤，可以直接使用一个对象来代替。 -->
+	    <my-cpn1></my-cpn1>
+	    <my-cpn2></my-cpn2>
+	    <my-cpn3></my-cpn3>
+	    <my-cpn4></my-cpn4>
+    </div>
+
+    <script src="../vue.js"></script>
+
+    <script>
+	    // 全局注册-原始方法
+	    const cpnC1 = Vue.extend({
+		    template:`
+					<div>
+					<h2>全局注册-原始方法标题</h2>
+          <p>全局注册-原始方法内容</p>
+          </div>`
+	    });
+	    Vue.component('myCpn1',cpnC1);
+
+	    // 全局注册-语法糖
+	    Vue.component('myCpn2',{
+		    template:`
+					<div>
+					<h2>全局注册-语法糖标题</h2>
+          <p>全局注册-语法糖内容</p>
+          </div>`
+	    });
+
+	    // 局部注册-原始方法
+	    const cpnC3 = Vue.extend({
+		    template:`
+					<div>
+					<h2>局部注册-原始方法标题</h2>
+          <p>局部注册-原始方法内容</p>
+          </div>`
+	    });
+
+      const app = new Vue({
+        el: '#app',
+        data: {
+          message: '你好啊'
+        },
+	      components: {
+		      // 局部注册-原始方法
+        	'myCpn3': cpnC3,
+		      // 局部注册-语法糖
+		      'myCpn4':{
+		      	template:`
+							<div>
+							<h2>语法糖（局部注册）标题</h2>
+							<p>语法糖（局部注册）内容</p>
+							</div>`
+		      }
+	      }
+      })
+    </script>
+  </body>
+</html>

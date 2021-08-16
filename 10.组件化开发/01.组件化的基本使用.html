@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zn-CN">
+
+  <head>
+  
+    <meta charset="UTF-8">
+    <title>Title</title>
+    
+  </head>
+    
+  <body>
+  
+    <div id="app">
+
+      <!-- Vue.extend()：调用 Vue.extend() 创建的是一个组件构造器。 
+          通常在创建组件构造器时，传入 template 代表我们自定义组件的模板。
+          该模板就是在使用到组件的地方，要显示的 HTML 代码。 -->
+      <!-- Vue.component()：调用 Vue.component() 是将组件构造器注册为一个组件，
+          并且给它起一个组件的标签名称。需要传递两个参数：
+          （1）注册组件的标签名 （2）组件构造器。 -->
+      <!-- 组件必须挂载在某个 Vue 实例下。使用组件时不能使用驼峰式名字。 -->
+
+	    <!-- 3.使用组件。 -->
+	    <my-cpn></my-cpn>
+	    <my-cpn></my-cpn>
+	    <my-cpn></my-cpn>
+    </div>
+
+    <script src="../vue.js"></script>
+
+    <script>
+	    // 1.创建组件构造器。
+	    const cpnC = Vue.extend({   
+		    template:`    
+					<div>
+					<h2>标题</h2>
+          <p>内容</p>
+          </div>`
+	    });
+	    // 2.注册组件。
+	    Vue.component('myCpn',cpnC);
+
+      const app = new Vue({
+        el: '#app',
+        data: {
+        },
+      })
+    </script>
+    
+  </body>
+    
+</html>

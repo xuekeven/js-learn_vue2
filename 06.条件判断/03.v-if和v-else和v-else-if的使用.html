@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html lang="zn-CN">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  </head>
+    
+  <body>
+
+	  <div id="app">
+
+			<!-- v-else-if 前一兄弟元素必须有 v-if 或 v-else-if。 -->
+		  <!-- 不建议使用标签，建议使用计算属性。 -->
+		  <h2 v-if="score>=85">优秀</h2>
+		  <h2 v-else-if="score>=80">良好</h2>
+		  <h2 v-else-if="score>=60">及格</h2>
+		  <h2 v-else>不及格</h2>
+	  </div>
+
+	  <script src="../vue.js"></script>
+
+	  <script>
+		  const app = new Vue({
+			  el: '#app',
+			  data: {
+				  score:100
+			  },
+		  })
+	  </script>
+
+  </body>
+    
+</html>

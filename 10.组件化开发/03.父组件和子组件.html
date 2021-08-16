@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zn-CN">
+
+  <head>
+  
+    <meta charset="UTF-8">
+    <title>Title</title>
+    
+  </head>
+    
+  <body>
+  
+    <div id="app">
+      <cpn-fath></cpn-fath>
+    </div>
+
+    <script src="../vue.js"></script>
+    
+    <script>
+	    // 创建子组件构造器。
+	    const cpnCSon = Vue.extend({
+		    template:`
+					<div>
+					<h2>子组件标题</h2>
+          <p>子组件内容，哈哈哈</p>
+          </div>`
+	    });
+	    // 创建父组件构造器。
+	    const cpnCFath = Vue.extend({
+		    template:`
+					<div>
+					<h2>父组件标题</h2>
+          <p>父组件内容，呵呵呵</p>
+					<cpnSon></cpnSon>
+          </div>`,
+		    components: {
+		    	'cpnSon':cpnCSon
+		    }
+	    });
+	    // Vue 实例可以看为一个组件，根组件（root组件）
+	    const app = new Vue({
+		    el: '#app',
+		    data: {
+		    },
+		    components: {
+					// 注册局部组件
+		    	'cpnFath':cpnCFath
+		    }
+	    });
+    </script>
+    
+  </body>
+    
+</html>

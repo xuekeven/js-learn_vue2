@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zn-CN">
+
+  <head>
+  
+    <meta charset="UTF-8">
+    <title>Title</title>
+    
+  </head>
+    
+  <body>
+  
+    <div id="app">
+	    <com></com>
+	    <com></com>
+	    <com></com>
+    </div>
+
+    <script src="../vue.js"></script>
+
+    <template id="cpn">
+	    <div>
+		    <h2>当前数字：{{count}}</h2>
+		    <button @click="decrement">-</button>
+		    <button @click="increment">+</button>
+	    </div>
+    </template>
+
+    <script>
+
+	    Vue.component('com',{
+	    	template:`#cpn`,
+		    // 数据是函数，多次使用组件时会重新调用函数创建内存地址（创建新数据）。
+		    // 若数据不是函数，多次使用组件时会共享内存地址（数据），相当还是一个组件。
+		    data() {
+	    		return{
+	    			count:0
+			    }
+		    },
+		    methods: {
+			    decrement() {
+				    this.count--
+			    },
+			    increment() {
+				    this.count++
+			    }
+		    }
+	    });
+
+      const app = new Vue({
+        el: '#app',
+        data: {
+        }
+      });
+    </script>
+  </body>
+</html>

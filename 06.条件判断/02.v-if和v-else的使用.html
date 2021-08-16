@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html lang="zn-CN">
+
+	<head>
+
+		<meta charset="UTF-8">
+		<title>Title</title>
+
+	</head>
+
+	<body>
+
+		<div id="app">
+
+			<!-- v-else 前一兄弟元素必须有 v-if 或 v-else-if。 -->
+			<h2 v-if='isShow == true'>
+				<div>vue的学习</div>
+				{{message}}
+			</h2>
+
+			<h2 v-else>
+				当我显示时，说明isShow为false
+			</h2>
+
+		</div>
+
+		<script src="../vue.js"></script>
+
+		<script>
+			const app = new Vue({
+				el: '#app',
+				data: {
+					message: '你好啊',
+					isShow: true
+				},
+			})
+		</script>
+
+	</body>
+
+</html>
+
+

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html lang="zn-CN">
+
+  <head>
+  
+    <meta charset="UTF-8">
+    <title>Title</title>
+    
+  </head>
+    
+  <body>
+  
+    <div id="app">
+
+      <ul>
+        <!-- 在遍历对象过程中，可以选择使用键值和索引值。 -->
+	      <li v-for="item in info">{{item}}</li>
+	      <br>
+		    <li v-for="(value, key) in info">{{key}}：{{value}}</li>
+        <br>
+		    <li v-for="(value, key, index) in info">{{index}}-{{key}}：{{value}}</li>
+	    </ul>
+
+    </div>
+
+    <script src="../vue.js"></script>
+
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {
+          info: {
+          	name: 'why',
+	          age: 28,
+	          height:'1.88m'
+          }
+        },
+      })
+    </script>
+    
+  </body>
+    
+</html>

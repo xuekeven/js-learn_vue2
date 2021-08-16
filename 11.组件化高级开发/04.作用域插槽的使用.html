@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zn-CN">
+
+  <head>
+  
+    <meta charset="UTF-8">
+    <title>Title</title>
+    
+  </head>
+    
+  <body>
+  
+    <div id="app">
+
+			<!-- 作用域插槽：使用插槽时需要将插槽的默认元素换个方式展示，
+					但插槽的内容是由子组件来提供的。因为编程作用域，设置插槽时是在父级作用域
+					父组件范围内不能使用子组件中的数据，又是在插槽，所以有些麻烦。 -->
+			<!-- 使用作用域插槽：为使用子组件的数据，需要同时用具名插槽。
+					首先在子组件模板的具名插槽用 v-bind 绑定要使用的数据（被称为插槽 prop），
+					然后在子组件使用时给包含所有插槽 prop 的对象命名，接着使用该对象。 -->
+
+      <cpn></cpn>
+			
+	    <cpn>
+				<!-- 在子组件使用时给包含所有插槽 prop 的对象命名，接着使用该对象 -->
+				<template v-slot:ok='slotsss'>
+						<span v-for="item in slotsss.a">{{item}}-</span>
+				</template>
+	    </cpn>
+
+	    <cpn>
+				<!-- 在子组件使用时给包含所有插槽 prop 的对象命名，接着使用该对象。
+						这里使用语法糖。 -->
+				<template #ok="slotssa">
+			    <span>{{slotssa.a.join(' * ')}}</span>
+					<br>
+			    <span>{{slotssa.b}}</span>
+		    </template>
+	    </cpn>
+
+    </div>
+
+    <script src="../vue.js"></script>
+
+    <template id="cpn">
+	    <div>
+		    <!-- 设置作用域插槽默认内容。 -->
+				<!-- 在子组件模板的具名插槽用 v-bind 绑定要使用的数据（被称为插槽 prop） -->
+		    <slot name="ok" :a="languages" :b="names">
+			    <ul>
+				    <li v-for="item in languages">{{item}}</li>
+			    </ul>
+		    </slot>
+	    </div>
+    </template>
+
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {
+          message: '你好啊'
+        },
+	      components: {
+        	cpn: {
+        		template:`#cpn`,
+		        data() {
+        			return {
+        				languages:['javascript','python','c','php','go'],
+				        names: 'kai'
+			        }
+		        }
+	        }
+	      }
+      })
+    </script>
+    
+  </body>
+    
+</html>

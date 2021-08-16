@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html lang="zn-CN">
+
+  <head>
+  
+    <meta charset="UTF-8">
+    <title>Title</title>
+    
+  </head>
+    
+  <body>
+  
+    <div id="app">
+
+      <!-- v-for 的默认行为会尝试原地修改元素而不是移动它们。
+        要强制其重新排序元素，需要用特殊 attribute 的 key 来提供一个排序提示。 -->
+	    <ul>
+        <!-- 不使用 :key，如果要插入 F，前面的字母需要依次改变顺序。 -->
+		    <li v-for="item in letters">{{item}}</li>
+	      <!-- 使用 :key，如果要插入 F ，使用 diff 算法更高效，高效的更新虚拟DOM。 -->
+	      <br>
+		    <li v-for="item in letters" :key="item">{{item}}</li>
+	    </ul>
+    </div>
+
+    <script src="../vue.js"></script>
+
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {
+          letters: ['A','B','C','D','E']
+        },
+      })
+    </script>
+    
+  </body>
+    
+</html>

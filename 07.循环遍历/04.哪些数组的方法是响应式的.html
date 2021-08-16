@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html lang="zn-CN">
+
+  <head>
+  
+    <meta charset="UTF-8">
+    <title>Title</title>
+    
+  </head>
+    
+  <body>
+  
+    <div id="app">
+
+			<!-- Vue 是响应式的，所以当数据发生变化时，Vue会自动检测数据变化，视图会发生对应的更新。
+				Vue 中包含了一组观察数组编译的方法，使用它们改变数组也会触发视图的更新。 -->
+	    <ul>
+		    <li v-for="item in letters" :key="item" >{{item}}</li>
+	    </ul>
+	    <button @click="fun()">按钮</button>
+    </div>
+
+    <script src="../vue.js"></script>
+
+    <script>
+	    const app = new Vue({
+		    el: '#app',
+		    data: {
+			    letters: ['A','B','C','D','E']
+		    },
+		    methods: {
+		    	fun() {
+
+		    		// 以下七种方法是响应式的
+		    		// 1.push()最后添加一个元素
+		    		// this.letters.push('aaa')
+				    // 2.pop()删除最后一个元素
+				    // this.letters.pop()
+				    // 3.shift()删除第一个元素
+				    // this.letters.shift()
+				    // 4.unshift()添加在最前面,可以添加多个元素
+				    // this.letters.unshift('aaa','bbb','ccc')
+				    // 5.splice():删除元素/插入元素/替换元素
+				    // splice(1,1)再索引为1的地方删除一个元素,第二个元素不传，直接删除后面所有元素
+				    // splice(index,0,'aaa')再索引index后面删除0个元素，加上'aaa',
+				    // splice(1,1,'aaa')替换索引为1的后一个元素为'aaa'
+				    // this.letters.splice(2,0,'aaa')
+				    // 6.sort()排序
+				    // this.letters.sort()
+				    // 7.reverse()反转
+				    // this.letters.reverse()
+
+				    // 以下方法不是响应式的
+				    this.letters[0]='f'
+			    }
+		    }
+	    })
+    </script>
+    
+  </body>
+    
+</html>

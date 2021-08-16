@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html lang="zn-CN">
+
+  <head>
+  
+    <meta charset="UTF-8">
+    <title>v-bind</title>
+    <style>
+      img {
+        height: 100px;
+        width: 100px;
+      }
+    </style>
+  </head>
+
+  <body>
+  
+    <div id="app">
+
+      <!-- v-bind 动态地绑定一个或多个 attribute，或一个组件 prop 到表达式 -->
+      <img v-bind:src="imgURL">
+			<!-- 语法糖缩写写法 -->
+	    <a :href="aHref">GOOGLE</a>
+    </div>
+
+    <script src="../vue.js"></script>
+
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {
+          message: '你好啊',
+	        imgURL: 'https://cn.vuejs.org/images/logo.svg',
+	        aHref: 'https://google.com'
+        },
+      })
+    </script>
+    
+  </body>
+    
+</html>

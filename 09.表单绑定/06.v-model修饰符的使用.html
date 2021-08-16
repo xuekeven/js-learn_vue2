@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zn-CN">
+
+	<head>
+
+		<meta charset="UTF-8">
+		<title>Title</title>
+
+	</head>
+
+	<body>
+
+		<div id="app">
+
+			<!-- 修饰符 lazy：在数据失去焦点后再响应。 -->
+			<input type="text" v-model.lazy="message">
+			<h2>{{message}}</h2>
+
+			<!--  -->
+			<!-- 修饰符 number：进行类型转换。v-model 默认值为 String 类型。  -->
+			<input type="text" v-model.number="age">
+			<h2>{{typeof age}}</h2>
+
+			<!-- 修饰符 trim：删除左右空格。 -->
+			<input type="text" v-model.trim="name">
+			<h2>{{name}}</h2>
+		</div>
+
+	<script src="../vue.js"></script>
+
+	<script>
+		const app = new Vue({
+			el: '#app',
+			data: {
+				message: '你好啊',
+				age: 15,
+				name: ''
+			},
+		})
+	</script>
+
+	</body>
+
+</html>

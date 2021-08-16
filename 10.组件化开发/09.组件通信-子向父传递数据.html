@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zn-CN">
+
+  <head>
+  
+    <meta charset="UTF-8">
+    <title>Title</title>
+    
+  </head>
+    
+  <body>
+  
+    <div id="app">
+
+			<!-- 子组件通过自定义事件向父组件发送消息。 -->
+			<!-- 自定义事件的流程：
+					在子组件中，通过 $emit() 来自定义事件。
+					在父组件中，通过 v-on 来监听子组件事件。 -->
+
+			<!-- 传递数据时需要在组件标签使用 v-on 监听自定义事件，此时调用函数不能用括号。 -->
+      <cpn @item-click="cpnClick"></cpn>
+    </div>
+
+    <script src="../vue.js"></script>
+
+    <!-- template 模板。 -->
+    <template id="cpn">
+	    <div>
+		    <button v-for="item in categories" @click="btnClick(item.name)">{{item.name}}</button>
+	    </div>
+    </template>
+
+    <script>
+	    // 子组件。
+	    const cpn = {
+	    	template: `#cpn`,
+		    data() {
+	    		return{
+	    			categories: [
+					    { id:'aaa', name: '热门推荐'},
+					    { id:'bbb', name: '手机数码'},
+					    { id:'ccc', name: '家具家电'},
+					    { id:'ddd', name: '电脑办公'},
+				    ]
+			    }
+		    },
+		    methods: {
+	    		btnClick(item){
+	    			// 自定义事件
+				    this.$emit('item-click',item);
+			    }
+		    }
+	    };
+	    // Vue 实例可以当作父组件，用法一样。
+      const app = new Vue({
+        el: '#app',
+        data: {
+          message: '你好啊'
+        },
+	      components: {
+		      // 注册子组件。
+        	cpn
+	      },
+	      methods: {
+        	cpnClick(item) {
+        		console.log(item)
+	        }
+	      }
+      })
+    </script>
+    
+  </body>
+    
+</html>

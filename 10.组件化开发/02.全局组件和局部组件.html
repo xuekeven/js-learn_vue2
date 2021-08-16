@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zn-CN">
+
+  <head>
+  
+    <meta charset="UTF-8">
+    <title>Title</title>
+    
+  </head>
+    
+  <body>
+  
+		<!-- 调用 Vue.component() 注册组件时组件的注册是全局的,可在任意 Vue 示例使用。
+				注册的组件挂载在某个实例中, 是局部组件。局部注册的组件在其子组件中不可用。 -->
+
+    <div id="app1">
+	    <my-cpn1></my-cpn1>
+	    <my-cpn1></my-cpn1>
+	    <my-cpn2></my-cpn2>
+			<my-cpn2></my-cpn2>
+    </div>
+
+		<div>----------------------------------------------------------</div>
+
+    <div id="app2">
+	    <my-cpn2></my-cpn2>
+	    <my-cpn2></my-cpn2>
+	    <my-cpn1></my-cpn1>
+			<my-cpn1></my-cpn1>
+    </div>
+
+    <script src="../vue.js"></script>
+
+    <script>
+
+	    // 1.创建组件构造器。
+	    const cpnC1 = Vue.extend({
+		    template:`
+					<div>
+					<h2>标题全局组件</h2>
+          <p>内容全局组件</p>
+          </div>`
+	    });
+	    const cpnC2 = Vue.extend({
+		    template:`
+					<div>
+					<h2>标题局部组件</h2>
+          <p>内容局部组件</p>
+          </div>`
+	    });
+	    // 2.注册全局组件。
+	    Vue.component('myCpn1', cpnC1);
+
+	    const app1 = new Vue({
+		    el: '#app1',
+		    data: {
+			    message: '你好啊'
+		    },
+	    });
+	    const app2 = new Vue({
+		    el: '#app2',
+		    data: {
+		    },
+		    components: {
+			    // 2.注册局部组件。
+			    'myCpn2': cpnC2
+		    }
+	    })
+    </script>
+  </body>
+    
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html lang="zn-CN">
+
+  <head>
+  
+    <meta charset="UTF-8">
+    <title>Title</title>
+    
+  </head>
+    
+  <body>
+  
+    <div id="app">
+
+      <!-- v-show 根据表达式之真假值，切换元素的 display CSS property。
+        当条件变化时该指令触发过渡效果。 -->
+      
+      <!-- v-show 的用法和 v-if 非常相似，也用于决定一个元素是否渲染。 -->
+	    <!-- v-if：当条件为 false 时，包含 v-if 的元素，不会存在于 dom 中。 -->
+      <h2 v-if="isShow" id="aaa" >{{message}}</h2>
+	    <!-- v-show：当条件为 false 时，包含 v-show 的元素，为被添加样式 display:none。 -->
+	    <h2 v-show="isShow" id="bbb">{{message}}</h2>
+
+      <!-- 当在显示和隐藏之间频繁切换时，使用 v-show。
+        当在显示和隐藏之间只有一次切换时，使用 v-if。 -->
+    </div>
+
+    <script src="../vue.js"></script>
+
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {
+          message: '你好啊',
+	        isShow: true
+        },
+      })
+    </script>
+    
+  </body>
+    
+</html>

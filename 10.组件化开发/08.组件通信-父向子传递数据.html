@@ -1,0 +1,90 @@
+<!DOCTYPE html>	    
+<html lang="zn-CN">
+
+  <head>
+  
+    <meta charset="UTF-8">
+    <title>Title</title>
+    
+  </head>
+    
+  <body>
+  
+    <div id="app">
+
+			<!-- 父组件通过 props 选项向子组件传递数据。 -->
+			<!-- props 接收值写法有两种方式：
+					方式一：数组，数组中的字符串就是传递时的名称。只接收值。
+					方式二：对象，对象可以设置传递时的类型、默认值等。可以验证数据。 -->
+
+			<!-- 传递数据时需要在子组件标签使用 v-bind 声明。 -->
+	    <cpn :cmovies="movies" :cmessage="message"></cpn>
+    </div>
+
+    <script src="../vue.js"></script>
+
+    <!-- template 模板。 -->
+    <template id="c">
+	    <div>
+		    {{cmessage}}
+		    <ul>
+			    <li v-for="item in cmovies">{{item}}</li>
+		    </ul>
+	    </div>
+    </template>
+
+    <script>
+	    // 子组件。
+	    const cpn = {
+		    template:`#c`,
+		    // 方式一：数组
+		    props:['cmovies','cmessage'],
+
+		    // 方式二：对象
+		    props: {
+		    	// 写法1：仅限制类型
+		    	cmovies: Array,
+					cmovies: [Array,String],
+			    cmessage: String,
+		    	// 写法2：多种限制
+			    cmessage: {
+				    // 限制类型
+				    type: String,
+				    // 提供默认值
+				    default: 'aaa',
+				    // 使用组件时，必须传递此数据，否则报错
+				    required:true
+			    },
+			    cmovies: {
+				    // 限制类型
+				    type: Array,
+				    // 提供默认值
+				    // 当类型是对象或数组时，默认值必须是一个函数
+				    default() {
+				    	return ['ccmovies','ccmessage']
+				    }
+			    }
+		    },
+		    data() {
+			    return {
+			    }
+		    },
+	    };
+	    // Vue 实例可以当作父组件，用法一样。
+      const app = new Vue({
+        el: '#app',
+        data: {
+          message: '你好啊',
+	        movies: ['海贼王','海王','海尔兄弟','海啸']
+        },
+	      components: {
+		      // 注册子组件。
+        	cpn
+	      }
+      })
+
+    </script>
+    
+  </body>
+    
+</html>
