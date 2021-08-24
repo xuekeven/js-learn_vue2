@@ -1,4 +1,4 @@
-# runtimeonly
+# runtime_only
 
 > A Vue.js project
 

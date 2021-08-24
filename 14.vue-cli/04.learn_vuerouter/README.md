@@ -1,4 +1,4 @@
-# learnvuerouter
+# learn_vuerouter
 
 > A Vue.js project
 

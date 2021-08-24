@@ -1,4 +1,4 @@
-# learnaxios
+# learn_axios
 
 > A Vue.js project
 

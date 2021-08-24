@@ -1,4 +1,4 @@
-# learnvuex
+# learn_vuex
 
 > A Vue.js project
 
