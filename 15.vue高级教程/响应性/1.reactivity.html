@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <script>
+    let a = 3;
+    let b = a * 10;
+    // 当 a 改变时 b 不会改变，因为这是命令性，不会保持同步关系，
+    // 我们希望改为声明式，可以用编程实现：使用 onAChanged 神奇函数。
+    // 该函数接收一个函数，当 a 改变时，自动重新执行传入的函数，b 随之改变。
+    onAChanged(() => {
+      b = a *10;
+    })
+  </script>
+
+  <script>
+    // 使用 Web 开发的例子来分析：
+
+    // 我们需要单元格 <span class="cell b1"></span> 的内容随需求同步。
+    // 神奇函数，当 state 值改变会自动重新运行：
+    onStateChange(() => {
+      document.querySelector('.cell.b1').textContent = state.a * 10;
+    })
+    // 进一步抽象，把 dom 的操作使用渲染引擎替换，但是我们不去研究渲染引擎的实现，
+    // 只是简单的认为它会自动解析模版代码与数据关联即可。同时，
+    // <span class="cell b1"></span> 变为 <span class="cell b1">{{ state.a * 10 }}</span>
+    onStateChange(() => {
+      // 抽象的视图渲染伪代码，可以简单的理解为在更新视图，
+      // 关系到虚拟 DOM 和真实 DOM，不去深究。
+      view = render(state); 
+    })
+
+    // 解决问题核心就是如何实现 onStateChange() 函数，下面是具体实现的方法：
+    // 1.首先定义一个外部变量 update 用于记录调用 onStateChanged() 时传入的函数。
+    let update;
+    const onStateChanged = _update => {
+      // 把传入的 _update 函数保存给外部变量 update
+      update = _update;
+    }
+    // 2.如果需要改变 state 就必须调用 setState 函数。
+    // 3.我们只需要在 setState 函数内部重新调用之前保存的 update 函数，即可达成自动更新。
+    // 需要改变数据必须调用 setState 函数，函数内把新的 state 更新并调用 update 函数。
+    const setState = newState => {
+      state = newState;
+      update();
+    }
+    // 总结：该方法只是把更新函数暂存到外部，然后规定用户不能随意调用，
+    // 我们要求必须调用特定函数（即 setState 函数）来变更状态。
+    // setState 函数只负责把旧状态替换为新状态，然后调用更新函数。
+    // 该方法就是 React 更新状态的方法（工作原理）：
+    onStateChanged(() => {
+      view = render(state); 
+    })
+    setState({ a: 5 });
+
+    // Angular 中可以直接操作 state 对变量赋值，而不需要调用 setState 函数。
+    // Angular 使用脏值检测的方式，拦截你的事件然后判断值是否改变。
+    onStateChanged(() => {
+      view = render(state); 
+    })
+    state.a = 5;
+
+    // 在 Vue 中做得更细：对象都会被转换为响应性的，使用 Object.defineProperty() 方法，
+    // 重写所有属性的 getter 和 setter 方法。我们把 onStateChanged() 函数改为 autorun() 函数。
+  </script>
+</body>
+</html>

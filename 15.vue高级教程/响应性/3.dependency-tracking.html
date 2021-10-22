@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 依赖跟踪（订阅发布模式）
+
+    // 怎样理解“依赖”？先实现一个依赖跟踪类 Dep，类里有两个方法。
+    // depend 方法表示当前正在执行的代码，收集这种依赖项。
+    // notify 方法表示依赖发生改变，任何之前被定义为依赖的都会被通知重新执行。
+    // 就是说我们需要找到一种让他们建立关联的方法、函数或一段表达式或计算，
+    // 这种关系叫依赖。并且这种计算也被认为是种订阅者模式。这就是依赖关系类的运行方式。
+    const dep = new Dep(); // dep 是一个依赖对象
+    // 此外，还有一个 autorun() 函数，该函数接收一个更新函数（或者理解为表达式）。
+    // 这个函数帮助我们创建一个响应区，当你进入这个更新函数时，一切变得特别。
+    // 当你处于这个响应空间时，在响应区中，就可以注册依赖项。
+    autorun(() => {
+      // 在这个函数里，依赖项就和这段逻辑产生依赖
+      // 实际上，我们是把这个函数添加到订阅者列表 dep
+      // 之后，无论在任何地方调用 dep.notify，它不需要修改 autorun 或做其它操作
+      // 当调用 dep.notify，这个函数会被再次调用
+      dep.depend();
+      console.log('updated');
+    }) // 打印: "updated"
+    dep.notify(); // 打印: "updated"
+
+    // Dep 类和 autorun 函数样板实现如下：
+    
+    window.Dep = class Dep {
+      constructor() {
+        // 订阅任务队列，方式有相同的任务，用Set数据结构简单处理
+        this.subscribers = new Set();
+      }
+      // 用于注册依赖项
+      depend() {
+        if (activeUpdate) {
+          this.subscribers.add(activeUpdate);
+        }
+      }
+      // 用于发布消息，触发依赖项重新执行
+      notify() {
+        this.subscribers.forEach(sub => sub());
+      }
+    }
+
+    let activeUpdate = null;
+
+    function autorun(update) {
+      function wrappedUpdate() {
+        // 把 wrappedUpdate 赋值给 activeUpdate，这会使得当依赖关系发生改变时，
+        // update 函数会重新执行，即调用 wrappedUpdate 函数。
+        // 如果以后有改动，这个依赖跟踪器依然会不断收集依赖项。
+        // 有时，update 函数函数可能包含条件，变量为 true 收集依赖，变量为 false 收集其它依赖。
+        // 所以，依赖收集系统需要动态更新依赖，保证依赖项一直是最新。
+        activeUpdate = wrappedUpdate;
+        update();
+        activeUpdate = null;
+      }
+      wrappedUpdate();
+    }
+  </script>
+</body>
+</html>

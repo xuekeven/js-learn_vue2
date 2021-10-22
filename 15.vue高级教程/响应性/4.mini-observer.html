@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 实现迷你观察者
+    
+    // 将两个练习整合到一起，实现一个小型的观察者，通过在 getter 和 setter 中
+    // 调用 depend 方法和 notfiy 方法，就可以实现自动更新数据的目的。
+    // 期望效果：
+    const state = {
+      count: 0
+    }
+
+    observe(state);
+
+    autorun(() => {
+      console.log(state.count)
+    }) // 打印"count is: 0"
+    state.count++; // 打印"count is: 1"
+
+    // 最终整合代码如下：
+
+    class Dep {
+      constructor() {
+        this.subscribers = new Set();
+      }
+      depend() {
+        if (activeUpdate) {
+          this.subscribers.add(activeUpdate);
+        }
+      }
+      notify() {
+        this.subscribers.forEach(sub => sub());
+      }
+    }
+
+    function observe(obj) {
+      Object.keys(obj).forEach(key => {
+        let internalValue = obj[key];
+        const dep = new Dep();
+        Object.defineProperty(obj, key, {
+          // getter 收集依赖项，当触发 notify 时重新运行
+          get() {
+            dep.depend();
+            return internalValue;
+          },
+          // setter 用于调用 notify
+          set(newValue) {
+            const changed = internalValue !== newValue;
+            internalValue = newValue;
+            if (changed) dep.notify();
+          }
+        })
+      })
+      return obj;
+    }
+
+    let activeUpdate = null;
+
+    function autorun(update) {
+      function wrappedUpdate() {
+        activeUpdate = wrappedUpdate;
+        update();
+        activeUpdate = null;
+      }
+      wrappedUpdate();
+    }
+  </script>
+</body>
+</html>
