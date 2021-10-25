@@ -17,16 +17,19 @@
 		<!-- 具名插槽的使用：首先在子组件模板给 slot 标签设置 name 属性，
 				然后使用子组件时用 template 标签，
 				通过给 template 标签的 v-slot 属性声明对应 slot 标签 name 属性值来绑定插槽。
-				注意； v-slot 只能添加在 <template> 上。  -->
+				注意：v-slot 只能添加在 <template> 上。  -->
 
-		<cpn>
-			<template v-slot:left>左边按钮被替换了</template>
-		</cpn>
+		<!-- 使用默认插槽： -->
+		<cpn></cpn>
 
-		<!-- 语法糖缩写写法。 -->
-		<cpn>
-			<template #right>右边按钮被替换了</template>
-		</cpn>
+		<!-- 错误用法（不起名字）： -->
+		<cpn><template>被替换了</template></cpn>
+
+		<!-- 原始使用写法： -->
+		<cpn><template v-slot:left>左边按钮被替换了</template></cpn>
+
+		<!-- 语法糖缩写写法： -->
+		<cpn><template #right>右边按钮被替换了</template></cpn>
 
 	</div>
 
@@ -35,7 +38,6 @@
 	<template id="cpn">
 		<div>
 			<h2>这是标题</h2>
-			<p>内容</p>
 			<slot name="left"><button>左边</button></slot>
 			<slot name="center"><button>中间</button></slot>
 			<slot name="right"><button>右边</button></slot>

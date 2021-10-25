@@ -67,7 +67,7 @@ instance({
   url: '/home/multidata'
 }).then(res => {
   console.log(res)
-});
+})
 
 instance({
   url: 'home/data',

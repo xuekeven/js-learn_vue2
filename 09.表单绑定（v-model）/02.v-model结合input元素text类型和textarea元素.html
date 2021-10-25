@@ -4,7 +4,7 @@
   <head>
   
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>input元素text类型和textarea元素</title>
     
   </head>
 
@@ -12,7 +12,11 @@
   
     <div id="app">
 
-	    <!-- v-model 在表单控件或组件上，创建双向绑定。 -->
+      <!-- 在 <input> 元素中：
+        当 type 为 text 时，使用 value 属性值和 input 事件，来作语法糖。-->
+      <!-- 在 <textarea> 元素中：
+        使用 value 属性值和 input 事件，来作语法糖。 -->
+    
       <input type="text" v-model="message">
       <textarea v-model="message"></textarea>
 	    {{message}}
@@ -24,7 +28,7 @@
       const app = new Vue({
         el: '#app',
         data: {
-          message: '你好啊'
+          message: '你好'
         },
       })
     </script>

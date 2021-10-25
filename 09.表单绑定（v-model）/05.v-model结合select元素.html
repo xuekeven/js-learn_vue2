@@ -4,7 +4,7 @@
   <head>
   
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>select元素</title>
     <style>label {display: block;}</style>
     
   </head>
@@ -13,8 +13,10 @@
 
     <div id="app">
 
-      <!-- select 字段将 value 作为 prop 并将 change 作为事件。
-					下拉列表分为两种情况：单选和多选。 -->
+      <!-- 在 <select> 元素中：
+        使用 value 属性值和 change 事件，来作语法糖。  -->
+
+			<!--	select 下拉列表分为两种情况：单选和多选。 -->
 
 	    <!-- select 单选：
           v-model 绑定的是一个值。选中选项中的一个时，会将其对应 value 值赋给该值。 -->

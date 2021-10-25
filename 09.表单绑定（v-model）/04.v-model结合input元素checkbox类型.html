@@ -4,7 +4,7 @@
   <head>
   
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>input元素checkbox类型</title>
     <style>label {display: block;}</style>
 
   </head>
@@ -13,15 +13,15 @@
 
     <div id="app">
 
-      <!-- checkbox 复选框使用 checked property 和 change 事件。
-					复选框分为两种情况：单个勾选框和多个勾选框。 -->
+      <!-- 在 <input> 元素中：
+        当 type 为 radio 和 checkbox 时，使用 checked 属性值和 change 事件，来作语法糖。-->
+
+      <!-- checkbox 复选框分为两种情况：单个勾选框和多个勾选框。 -->
 
 	    <!-- checkbox 单个勾选框：
 					v-model 绑定为布尔值。此时 input 的 value 并不影响 v-model 的值。 -->
 	    <h1>checkbox 单个勾选框：</h1>
-      <label for="agree">
-	      <input type="checkbox" id="agree" v-model="isAgree">同意我们的协议
-      </label>
+      <label for="agree"><input type="checkbox" id="agree" v-model="isAgree">同意我们的协议</label>
 	    <h2>您选择是：{{isAgree}}</h2>
 	    <button :disabled="!isAgree">下一步</button>
 			
@@ -29,21 +29,11 @@
       <!-- checkbox 多个勾选框：
 					v-model 绑定是一个数组。当选中某个时，就会将对应的 value 添加到数组。-->
 	    <h1>checkbox 多个勾选框：</h1>
-	    <label for="篮球">
-		    <input type="checkbox" id="篮球" value="篮球" v-model="hobbies">打篮球
-	    </label>
-	    <label for="足球">
-		    <input type="checkbox" id="足球" value="足球" v-model="hobbies">踢足球
-	    </label>
-	    <label for="排球">
-		    <input type="checkbox" id="排球" value="排球" v-model="hobbies">拍排球
-	    </label>
-	    <label for="乒乓球">
-		    <input type="checkbox" id="乒乓球" value="乒乓球" v-model="hobbies">打乒乓球
-	    </label>
-	    <label for="羽毛球">
-		    <input type="checkbox" id="羽毛球" value="羽毛球" v-model="hobbies">打羽毛球
-	    </label>
+	    <label for="篮球"><input type="checkbox" id="篮球" value="篮球" v-model="hobbies">打篮球</label>
+	    <label for="足球"><input type="checkbox" id="足球" value="足球" v-model="hobbies">踢足球</label>
+	    <label for="排球"><input type="checkbox" id="排球" value="排球" v-model="hobbies">拍排球</label>
+	    <label for="乒乓球"><input type="checkbox" id="乒乓球" value="乒乓球" v-model="hobbies">打乒乓球</label>
+	    <label for="羽毛球"><input type="checkbox" id="羽毛球" value="羽毛球" v-model="hobbies">打羽毛球</label>
 	    <h2>您爱好有：{{hobbies}}</h2>
 
 	    <div>---------------------------------------------</div>

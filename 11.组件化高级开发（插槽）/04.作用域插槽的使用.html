@@ -19,18 +19,16 @@
 					首先在子组件模板的具名插槽用 v-bind 绑定要使用的数据（被称为插槽 prop），
 					然后在子组件使用时给包含所有插槽 prop 的对象命名，接着使用该对象。 -->
 
+			<!-- 使用作用域插槽默认内容： -->
       <cpn></cpn>
 			
+			<!-- 在子组件使用时给包含所有插槽 prop 的对象命名，接着使用该对象： -->
 	    <cpn>
-				<!-- 在子组件使用时给包含所有插槽 prop 的对象命名，接着使用该对象 -->
-				<template v-slot:ok='slotsss'>
-						<span v-for="item in slotsss.a">{{item}}-</span>
-				</template>
+				<template v-slot:ok='slotsss'><span v-for="item in slotsss.a">{{item}}-</span></template>
 	    </cpn>
 
+			<!-- 在子组件使用时给包含所有插槽 prop 的对象命名，接着使用该对象：（这里使用语法糖） -->
 	    <cpn>
-				<!-- 在子组件使用时给包含所有插槽 prop 的对象命名，接着使用该对象。
-						这里使用语法糖。 -->
 				<template #ok="slotssa">
 			    <span>{{slotssa.a.join(' * ')}}</span>
 					<br>

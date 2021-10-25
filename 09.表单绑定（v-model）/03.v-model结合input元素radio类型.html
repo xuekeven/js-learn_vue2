@@ -1,0 +1,41 @@
+<!DOCTYPE html
+<html lang="zn-CN">
+
+  <head>
+  
+    <meta charset="UTF-8">
+    <title>input元素radio类型</title>
+    <style>label {display: block;}</style>
+    
+  </head>
+
+  <body>
+  
+    <div id="app">
+
+      <!-- 在 <input> 元素中：
+        当 type 为 radio 和 checkbox 时，使用 checked 属性值和 change 事件，来作语法糖。-->
+
+      <!-- radio 单选按钮只有一种情况：单选。 -->
+      
+      <label for="male"><input type="radio" id="male" name="sex" value="男" v-model="sex">男生</label>
+	    <label for="female"><input type="radio" id="female" name="sex" value="女" v-model="sex">女生</label>
+      <label for="middle"><input type="radio" id="middle" name="sex" value="中性" v-model="sex">中性人</label>
+	    <h2>{{sex}}</h2>
+    </div>
+
+    <script src="../vue.js"></script>
+
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {
+          message: '你好啊',
+	        sex: ''
+        },
+      })
+    </script>
+    
+  </body>
+    
+</html>
