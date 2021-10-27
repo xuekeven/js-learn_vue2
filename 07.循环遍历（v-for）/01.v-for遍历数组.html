@@ -13,10 +13,10 @@
   
     <div id="app">
 
-      <!-- v-for 基于源数据多次渲染元素或模板块。此指令之值，
-        必须使用特定语法 alias in expression，为当前遍历的元素提供别名。 -->
+      <!-- v-for 指令基于源数据多次渲染元素或模板块。此指令之值，
+          必须使用特定语法 alias in expression，为当前遍历的元素提供别名。 -->
       <!-- 从 2.6 起，v-for 也可以在实现了可迭代协议的值上使用，包括原生的 Map 和 Set。
-        不过 Vue 2.x 目前并不支持可响应的 Map 和 Set 值，所以无法自动探测变更。 -->
+          不过 Vue 2.x 目前并不支持可响应的 Map 和 Set 值，所以无法自动探测变更。 -->
       <!-- v-for 当和 v-if 一起使用时，v-for 的优先级比 v-if 更高。 -->
 	    <ul>
         <!-- 在遍历数组过程中，可以选择使用索引值。 -->
@@ -33,8 +33,8 @@
       const app = new Vue({
         el: '#app',
         data: {
-          namesArray: ['why','zhang','li','xue'],
-          namesObject: {'name1':'why','name2':'zhang','name3':'li','name4':'xue'}
+          namesArray: ['why', 'zhang', 'li', 'xue'],
+          namesObject: {'name1':'why', 'name2':'zhang', 'name3':'li', 'name4':'xue'}
         },
       })
     </script>

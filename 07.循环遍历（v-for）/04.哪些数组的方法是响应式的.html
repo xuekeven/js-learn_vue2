@@ -13,8 +13,8 @@
   
     <div id="app">
 
-			<!-- Vue 是响应式的，所以当数据发生变化时，Vue会自动检测数据变化，视图会发生对应的更新。
-				Vue 中包含了一组观察数组编译的方法，使用它们改变数组也会触发视图的更新。 -->
+			<!-- Vue 是响应式的，所以当数据发生变化时，Vue 会自动检测数据变化，视图会发生对应的更新。
+					Vue 中包含了一组观察数组编译的方法，使用它们改变数组也会触发视图的更新。 -->
 	    <ul>
 		    <li v-for="item in letters" :key="item" >{{item}}</li>
 	    </ul>
@@ -27,7 +27,7 @@
 	    const app = new Vue({
 		    el: '#app',
 		    data: {
-			    letters: ['A','B','C','D','E']
+			    letters: ['A', 'B', 'C', 'D', 'E']
 		    },
 		    methods: {
 		    	fun() {
@@ -52,7 +52,7 @@
 				    // this.letters.reverse()
 
 				    // 以下方法不是响应式的
-				    this.letters[0]='f'
+				    this.letters[0] = 'f'
 			    }
 		    }
 	    })

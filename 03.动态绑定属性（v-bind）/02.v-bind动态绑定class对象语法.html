@@ -21,13 +21,13 @@
   
     <div id="app">
 
-      <!-- v-bind 绑定 class 属性使用对象，和普通 class 同时存在不冲突。 -->
+      <!-- v-bind 指令绑定 class 的 attribute 时支持使用对象，和普通 class 同时存在不冲突。 -->
 	    <!-- :class="{key(属性名):value(属性值)}"，通过判断传入多个类。 -->
-      <h2 class="title" :class="{active:isActive,line:isLine}">{{message}}</h2>
+      <h2 class="title" :class="{active: isActive, line: isLine}">{{message}}</h2>
       <button v-on:click="btnclick">按钮1</button>
 
 	    <!-- 数据过于复杂时，可以使用计算属性或函数。 -->
-	    <h2 :class="getClass()">{{message}}，最近怎么样？</h2>
+	    <h2 class="title" :class="getClass()">{{message}}，最近怎么样？</h2>
 	    <button v-on:click="btnclick">按钮2</button>
     </div>
 
@@ -47,7 +47,7 @@
             this.isLine = !this.isLine;
 	        },
 		      getClass: function () {
-        		return {active:this.isActive,line:this.isLine}
+        		return {active: this.isActive, line: this.isLine}
 		      }
 	      }
       })

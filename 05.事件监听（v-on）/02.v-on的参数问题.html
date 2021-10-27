@@ -5,7 +5,7 @@
   <head>
   
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>v-on</title>
     
   </head>
 
@@ -13,8 +13,7 @@
   
     <div id="app">
  
-			<!-- v-on 绑定的事件发生后，Vue 会产生相应 event 事件。 -->
-
+			<!-- v-on 指令绑定的事件发生后，Vue 会产生相应 event 事件。 -->
 
 	    <!-- 事件调用的方法不需要参数不需要 event 对象，有无括号都一样。-->
 	    <button @click="btn1Click()">按钮1</button>
@@ -42,7 +41,6 @@
 	    <!-- 事件调用的方法需要参数又需要 event 对象，但没传入，且没括号。-->
 	    <!-- 那么 Vue 会默认将浏览器生成的 event 事件对象作为第一个形参传入到方法，其它形参为 undefined。-->
 	    <button @click="btn3Click">按钮8</button>
-
     </div>
 
     <script src="../vue.js"></script>
@@ -57,11 +55,11 @@
         	btn1Click() {
 		        console.log('btn1Click');
 	        },
-		      btn2Click(a,b,c) {
-			      console.log('---',a,b,c);
+		      btn2Click(a, b, c) {
+			      console.log('---', a, b, c);
 		      },
-		      btn3Click(a,event,b,c) {
-			      console.log('+++',a,event,b,c);
+		      btn3Click(a, event, b, c) {
+			      console.log('+++', a, event, b, c);
 		      },
 	      }
       })

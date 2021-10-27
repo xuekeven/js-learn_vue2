@@ -13,11 +13,10 @@
 
 	  <div id="app">
 			
-			<!-- v-once 只渲染元素和组件一次。随后改动后的重新渲染，
-				元素/组件及其所有的子节点将被视为静态内容并跳过。
-				这可以用于优化更新性能。 -->
-		  <h2>{{counter}}</h2>
-		  <h2 v-once>{{counter}}</h2>
+			<!-- v-once 指令只渲染元素和组件一次。随后改动后的重新渲染，
+					元素/组件及其所有的子节点将被视为静态内容并跳过。可用于优化更新性能。 -->
+		  <h2 @click = 'double'>{{counter}}</h2>
+		  <h2 @click = 'double' v-once>{{counter}}</h2>
 	  </div>
 
 	  <script src="../vue.js"></script>
@@ -26,8 +25,13 @@
 	    const app = new Vue({
 	      el: '#app',
 	      data: {
-	        counter:'中国'
+	        counter: 100
 	      },
+				methods: {
+					double() {
+						this.counter = this.counter * 2
+					}
+				}
 	    })
 	  </script>
     

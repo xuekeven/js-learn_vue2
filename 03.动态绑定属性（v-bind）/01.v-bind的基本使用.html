@@ -18,9 +18,12 @@
   
     <div id="app">
 
-      <!-- v-bind 动态地绑定一个或多个 attribute，或一个组件 prop 到表达式 -->
+      <!-- v-bind 指令动态地绑定一个或多个 attribute，或一个组件 prop 到表达式。 -->
+      <!-- 在绑定 class 或 style 的 attribute 时，支持其它类型的值，如数组或对象。 -->
       <img v-bind:src="imgURL">
-			<!-- 语法糖缩写写法 -->
+      <a v-bind:href="aHref">GOOGLE</a>
+			<!-- 语法糖缩写写法： -->
+      <img :src="imgURL">
 	    <a :href="aHref">GOOGLE</a>
     </div>
 
@@ -30,7 +33,6 @@
       const app = new Vue({
         el: '#app',
         data: {
-          message: '你好啊',
 	        imgURL: 'https://cn.vuejs.org/images/logo.svg',
 	        aHref: 'https://google.com'
         },

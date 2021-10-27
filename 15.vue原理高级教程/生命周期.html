@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=\, initial-scale=1.0">
+  <title>生命周期</title>
+</head>
+<body>
+  <div id="app">
+    Vue的生命周期
+    <button @click='add()'>点击</button>
+  </div>
+
+  <script src="../vue.js"></script>
+  <script>
+    let app = new Vue({
+      el: '#app',
+      beforeCreate() {
+        console.log(this)
+        console.log(this.name)
+      },
+      created() {
+        console.log(this)
+        console.log(this.name)
+      },
+      beforeMount() {
+        console.log(this)
+        console.log(this.name)
+      },
+      mounted() {
+        console.log(this)
+        console.log(this.name)
+      },
+      beforeDestroy() {
+        console.log(this)
+        console.log(this.name)
+      },
+      destroyed() {
+        console.log(this)
+        console.log(this.name)
+      },
+      data: {
+        name: 'kai'
+      },
+      methods: {
+        add() {
+          console.log(123)
+        }
+      },
+      
+    })
+  </script>
+</body>
+</html>

@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <title>v-cloak</title>
 	  <style>
-			/* v-cloak 和 CSS 规则一起用 */
+			/* v-cloak 指令 和 CSS 规则一起用 */
 		  [v-cloak] {
 			  display: none;
 		  }
@@ -19,9 +19,8 @@
   
     <div id="app">
 
-			<!-- v-cloak 保持在元素上直到关联实例结束编译。
-				和 CSS 规则一起用时，
-				这个指令可以隐藏未编译的 Mustache 标签直到实例准备完毕. -->
+			<!-- v-cloak 指令保持在元素上直到关联实例结束编译。和 CSS 规则一起用时，
+					这个指令可以隐藏未编译的 Mustache 标签直到实例准备完毕。 -->
       <h2 v-cloak>{{message1}}</h2>
 			<h2>{{message2}}</h2>
     </div>
@@ -39,8 +38,7 @@
 				    }
 		    })
 		    }
-	    },1000)
-
+	    }, 1000)
     </script>
     
   </body>

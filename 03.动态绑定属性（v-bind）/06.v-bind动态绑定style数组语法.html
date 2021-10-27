@@ -13,10 +13,10 @@
   
     <div id="app">
 
-      <!-- v-bind 绑定 style 属性使用数组，和普通 style 同时存在不冲突。 -->
-	    <!--:style="[value(值)]"，值使用驼峰式。 -->
+      <!-- v-bind 绑定 style 的 attribute 时支持使用数组，和普通 style 同时存在不冲突。 -->
+	    <!-- :style="[value(值)]"，值使用驼峰式。 -->
       <!-- 数据过于复杂时，可以使用计算属性或函数。 -->
-      <h2 style="color: aqua;" :style="[baseStyle,baseStyle1]">{{message}}</h2>
+      <h2 style="color: aqua;" :style="[baseStyle, baseStyle1]">{{message}}</h2>
     </div>
 
     <script src="../vue.js"></script>

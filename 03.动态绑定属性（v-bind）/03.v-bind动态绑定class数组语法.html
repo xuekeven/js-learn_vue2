@@ -20,9 +20,9 @@
   <body>
   
     <div id="app">
-      <!-- v-bind 绑定 class 属性使用数组，和普通 class 同时存在不冲突，使用数组较少。-->
+      <!-- v-bind 指令绑定 class 的 attribute 时支持使用数组，和普通 class 同时存在不冲突。使用数组较少。-->
       <!-- :class="[value(值)]"，传入多个类。 -->
-	    <h2 class="title" :class="[classActive,classLine]">{{message}}</h2>
+	    <h2 class="title" :class="[classActive, classLine]">{{message}}</h2>
 
 	    <!-- 数据过于复杂时，可以使用计算属性或函数。 -->
 	    <h2 class="title" :class="getClass()">{{message}}</h2>
@@ -40,7 +40,7 @@
         },
 	      methods: {
         	getClass: function () {
-        		return [this.classActive,this.classLine];
+        		return [this.classActive, this.classLine];
 	        }
 	      }
       })

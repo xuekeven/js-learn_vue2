@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="zn-CN">
 
   <head>
   
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>v-on</title>
     
   </head>
 
@@ -13,7 +14,7 @@
     <div id="app">
 
 			<!-- 我们拿到 event 的目的可能是进行一些事件处理。
-				Vue 提供了修饰符来帮助我们方便的处理一些事件。可以串联使用多个修饰符。 -->
+					Vue 提供了修饰符来帮助我们方便的处理一些事件。可以串联使用多个修饰符。 -->
 
 	    <!-- stop 修饰符：调用 event.stopPropagation()，停止冒泡。 -->
 	    <div @click="divClick()">
@@ -35,7 +36,6 @@
 	    <!-- once 修饰符：只触发一次回调。-->
 	    <br><br>
 	    <button @click.once="btn2Click()">按钮2</button>
-
     </div>
 
     <script src="../vue.js"></script>

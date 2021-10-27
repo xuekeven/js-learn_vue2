@@ -13,11 +13,11 @@
   
     <div id="app">
 
-      <!-- v-pre 跳过这个元素和它的子元素的编译过程。
-        可以用来显示原始 Mustache 标签。跳过大量没有指令的节点会加快编译。 -->
+      <!-- v-pre 指令跳过这个元素和它的子元素的编译过程。
+          可以用来显示原始 Mustache 标签。跳过大量没有指令的节点会加快编译。 -->
 	    <h2 v-pre>{{message}}</h2>
-      <h2>{{message}}</h2>
       <h2 v-pre>message</h2>
+      <h2>{{message}}</h2>
     </div>
 
     <script src="../vue.js"></script>
