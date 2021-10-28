@@ -7,8 +7,9 @@
   <title>生命周期</title>
 </head>
 <body>
+  
   <div id="app">
-    Vue的生命周期
+    <p id="first">Vue的生命周期</p>
     <button @click='add()'>点击</button>
   </div>
 
@@ -17,29 +18,39 @@
     let app = new Vue({
       el: '#app',
       beforeCreate() {
-        console.log(this)
-        console.log(this.name)
+        console.log('beforecreate:', this) // 可以拿到空的实例对象
+        this.add(); // error:not a function
+        console.log('beforecreate:', this.name) // beforecreate: undefined
+        console.log('beforecreate:', document.getElementById('first')) // null
       },
       created() {
-        console.log(this)
-        console.log(this.name)
+        console.log('create:', this) // 可以拿到初始化好的实例对象
+        this.add(); // 123
+        console.log('create:', this.name) // create: kai
+        console.log('create:', document.getElementById('first')) // null
       },
       beforeMount() {
-        console.log(this)
-        console.log(this.name)
+        console.log('beforeMount:', this) // 可以拿到初始化好的实例对象
+        this.add(); // 123
+        console.log('beforeMount:', this.name) // beforeMount: kai
+        console.log('beforeMount:', document.getElementById('first')) // null
       },
       mounted() {
-        console.log(this)
-        console.log(this.name)
+        console.log('mounted:', this) // 可以拿到初始化好的实例对象
+        this.add(); // 123
+        console.log('mounted:', this.name) // mounted: kai
+        console.log('mounted:', document.getElementById('first')) // mounted: <p id=​"first">​Vue的生命周期​</p>​
       },
-      beforeDestroy() {
-        console.log(this)
-        console.log(this.name)
-      },
-      destroyed() {
-        console.log(this)
-        console.log(this.name)
-      },
+      // beforeDestroy() {
+      //   console.log(this)
+      //   console.log(this.name)
+      //   this.add();
+      // },
+      // destroyed() {
+      //   console.log(this)
+      //   console.log(this.name)
+      //   this.add();
+      // },
       data: {
         name: 'kai'
       },
@@ -48,7 +59,6 @@
           console.log(123)
         }
       },
-      
     })
   </script>
 </body>
