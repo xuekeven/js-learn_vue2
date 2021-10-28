@@ -20,15 +20,15 @@ export default {
 
     // 已经初始化的信息可修改后响应式显示。
     state.info.name = 'kai'
-    // 想要响应式显示数据，数据须先初始化，使用Vue过程中新增数据无法响应式显示，除非使用Vue.set()方法。
+    // 想要响应式显示数据，数据须先初始化，使用 Vue 过程中新增数据无法响应式显示，除非使用 Vue.set() 方法。
     // state.info['address'] = '洛杉矶'（不能响应式显示）
-    Vue.set(state.info,'address','洛杉矶')
-    // 删除信息无法响应式显示，除非使用Vue.delete()方法。
+    Vue.set(state.info, 'address', '洛杉矶')
+    // 删除信息无法响应式显示，除非使用 Vue.delete() 方法。
     // delete state.info.age（不能响应式显示）
-    Vue.delete(state.info,'age')
+    Vue.delete(state.info, 'age')
   },
   updateAsync(state) {
-    // 异步操作action和mutation配合使用
+    // 异步操作 action 和 mutation 配合使用
     state.info.name = 'coderwhy'
   }
 }

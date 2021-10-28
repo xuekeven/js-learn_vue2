@@ -1,7 +1,6 @@
-
 export default {
   actUpdateAsync(context,payload) {
-    // 返回Promise
+    // 返回 Promise
     return new Promise((resolve,reject) => {
       setTimeout(() => {
         context.commit('updateAsync');

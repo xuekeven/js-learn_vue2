@@ -1,4 +1,3 @@
-
 export default {
   counter:3,
   students: [
