@@ -4,28 +4,18 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>实现迷你观察者</title>
 </head>
 <body>
+  <p id="count1"></p><p id="count2"></p><input id='click' type="button" value="点击">
+  <p id="name"></p><input id='textInput' type="text" value="keven">
+
   <script>
     // 实现迷你观察者
     
     // 将两个练习整合到一起，实现一个小型的观察者，通过在 getter 和 setter 中
     // 调用 depend 方法和 notfiy 方法，就可以实现自动更新数据的目的。
-    // 期望效果：
-    const state = {
-      count: 0
-    }
-
-    observe(state);
-
-    autorun(() => {
-      console.log(state.count)
-    }) // 打印"count is: 0"
-    state.count++; // 打印"count is: 1"
-
     // 最终整合代码如下：
-
     class Dep {
       constructor() {
         this.subscribers = new Set();
@@ -72,5 +62,101 @@
       wrappedUpdate();
     }
   </script>
+
+  <script>
+    // Vue双向绑定原理
+
+    const state = {
+      count: 1,
+      name: 'keven'
+    }
+    observe(state);
+
+    const count1 = document.getElementById('count1');
+    const count2 = document.getElementById('count2');
+    const button = document.getElementById('click');
+    const name = document.getElementById('name');
+    const text = document.getElementById('textInput');
+
+    button.addEventListener('click', () => {
+      console.log('added');
+      state.count++;
+    })
+    text.addEventListener('keyup', () => { 
+      console.log('keyuped');
+      state.name = text.value;
+    })
+    text.addEventListener('focusout', () => {
+      console.log('focusouted');
+      if (text.value === '') {
+        text.value = 'keven';
+        state.name = text.value;
+      } 
+    })
+
+    autorun(() => {
+      count1.innerHTML = state.count;
+      count2.innerHTML = state.count;
+      console.log('STATE.COUNT WAS CHANGED:', state.count);
+    })
+    autorun(() => {
+      name.innerHTML = state.name;
+      console.log('STATE.NAME WAS CHANGED:', state.name);
+    })
+    autorun(() => {
+      state.count;
+      state.name;
+      console.log('hahahahaha');
+    })
+  </script>
+
+  <script>
+    // 简单双向绑定实现（这种方法非常麻烦，不能自动绑定，需要一直手动添加来实现）
+
+    // const state = {
+    //   count: 1,
+    //   name: 'keven'
+    // }
+
+    // const count1 = document.getElementById('count1');
+    // const count2 = document.getElementById('count2');
+    // const button = document.getElementById('click');
+    // const name = document.getElementById('name');
+    // const text = document.getElementById('textInput');
+
+    // count1.innerHTML = state.count;
+    // count2.innerHTML = state.count;
+    // name.innerHTML = state.name;
+    // console.log('STATE.COUNT WAS CHANGED:', state.count);
+    // console.log('STATE.NAME WAS CHANGED:', state.name);
+    // console.log('hahahahaha');
+
+    // button.addEventListener('click', () =>  {
+    //   console.log('added');
+    //   state.count++;
+    //   count1.innerHTML = state.count;
+    //   count2.innerHTML = state.count;
+    //   console.log('STATE.COUNT WAS CHANGED:', state.count);
+    //   console.log('hahahahaha');
+    // })
+    // text.addEventListener('keyup', () => { 
+    //   console.log('keyuped');
+    //   state.name = text.value;
+    //   name.innerHTML = state.name;
+    //   console.log('STATE.NAME WAS CHANGED:', state.name);
+    //   console.log('hahahahaha');
+    // })
+    // text.addEventListener('focusout', () => {
+    //   console.log('focusouted');
+    //   if (text.value === '') {
+    //     text.value = 'keven';
+    //     state.name = text.value;
+    //     name.innerHTML = state.name;
+    //     console.log('STATE.NAME WAS CHANGED:', state.name);
+    //     console.log('hahahahaha');
+    //   } 
+    // })
+  </script>
+
 </body>
 </html>

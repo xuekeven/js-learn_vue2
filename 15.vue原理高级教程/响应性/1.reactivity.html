@@ -4,18 +4,20 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>响应性</title>
 </head>
 <body>
 
   <script>
+    // 响应性
+
     let a = 3;
     let b = a * 10;
     // 当 a 改变时 b 不会改变，因为这是命令性，不会保持同步关系，
     // 我们希望改为声明式，可以用编程实现：使用 onAChanged 神奇函数。
     // 该函数接收一个函数，当 a 改变时，自动重新执行传入的函数，b 随之改变。
     onAChanged(() => {
-      b = a *10;
+      b = a * 10;
     })
   </script>
 

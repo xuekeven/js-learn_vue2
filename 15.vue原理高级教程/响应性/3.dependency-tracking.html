@@ -4,36 +4,48 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>依赖跟踪（发布-订阅模式）</title>
 </head>
 <body>
   <script>
-    // 依赖跟踪（订阅发布模式）
+    // 依赖跟踪（发布-订阅模式）
 
-    // 怎样理解“依赖”？先实现一个依赖跟踪类 Dep，类里有两个方法。
+    // 1. 怎样理解“依赖”？先实现一个依赖跟踪类 Dep，类里有两个方法。
     // depend 方法表示当前正在执行的代码，收集这种依赖项。
     // notify 方法表示依赖发生改变，任何之前被定义为依赖的都会被通知重新执行。
-    // 就是说我们需要找到一种让他们建立关联的方法、函数或一段表达式或计算，
-    // 这种关系叫依赖。并且这种计算也被认为是种订阅者模式。这就是依赖关系类的运行方式。
+    // （depend 方法用于收集依赖项；notify 方法用于触发依赖项的重新执行）
+    // 就是说只要在之前使用 depend 方法收集的依赖项，当调用 notfiy 方法时其都会被触发执行。
+    // 即我们找到一种让他们建立关联的方法、函数或一段表达式或计算，这种关系叫依赖。
+    // 并且这种计算也被认为是种发布-订阅模式。这就是依赖关系类的运行方式。
+    // 依赖跟踪类 Dep，可以认为是消息订阅器，用来容纳所有的“订阅者”。
+    // 订阅器 Dep 主要负责收集订阅者，然后当数据变化的时候后执行对应订阅者的更新函数。
+
+    // 下面是 Dep 类期望达到的效果，调用 dep.depend 方法收集收集依赖，
+    // 当调用 dep.notify 方法，控制台会再次输出对应语句。
     const dep = new Dep(); // dep 是一个依赖对象
-    // 此外，还有一个 autorun() 函数，该函数接收一个更新函数（或者理解为表达式）。
-    // 这个函数帮助我们创建一个响应区，当你进入这个更新函数时，一切变得特别。
-    // 当你处于这个响应空间时，在响应区中，就可以注册依赖项。
+    autorun(() => {
+      dep.depend();
+      console.log('updated'); // 打印: "updated"
+    })
+    dep.notify() // 打印: "updated"
+
+    // 2. autorun() 函数接收一个更新函数（或者理解为表达式）。
+    // 这个函数帮助我们创建一个响应区，当代码放在这个响应区内，
+    // 就可以通过 dep.depend 方法注册依赖项。
     autorun(() => {
       // 在这个函数里，依赖项就和这段逻辑产生依赖
       // 实际上，我们是把这个函数添加到订阅者列表 dep
       // 之后，无论在任何地方调用 dep.notify，它不需要修改 autorun 或做其它操作
       // 当调用 dep.notify，这个函数会被再次调用
       dep.depend();
-      console.log('updated');
-    }) // 打印: "updated"
+      console.log('updated'); // 打印: "updated"
+    }) 
     dep.notify(); // 打印: "updated"
 
-    // Dep 类和 autorun 函数样板实现如下：
-    
+    // 最终，Dep 类和 autorun 函数样板实现如下：
     window.Dep = class Dep {
       constructor() {
-        // 订阅任务队列，方式有相同的任务，用Set数据结构简单处理
+        // 订阅任务队列，方式有相同的任务，用 Set 数据结构简单处理
         this.subscribers = new Set();
       }
       // 用于注册依赖项

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html lang="zn-CN">
+
+  <head>
+  
+    <meta charset="UTF-8">
+    <title>watch</title>
+    
+  </head>
+    
+  <body>
+  
+    <div id="app">
+
+			<!-- 虽然计算属性在大多数情况下更合适，但有时也需要一个自定义的侦听器。
+					这就是为什么 Vue 通过 watch 选项提供了一个更通用的方法，来响应数据的变化。
+					当需要在数据变化时执行异步或开销较大的操作时，这个方式是最有用的。 -->
+					
+			<!-- watch 是一个对象，键是需要观察的表达式，值是对应回调函数。
+					值也可以是方法名，或者包含选项的对象。Vue 实例将会在实例化时调用 $watch()，
+					遍历 watch 对象的每一个 property。 -->
+				<span>{{num}}</span><input type="button" value="点击加一" @click='num++'>
+				<br>
+				<span>{{num1}}</span><input type="button" value="点击平方" @click='num1 = num1 * num1'>
+				<br>
+				<span>{{num2}}</span><input type="button" value="点击立方" @click='num2 = num2 * num2 * num2'>
+    </div>
+
+    <script src="../vue.js"></script>
+
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {
+					num: 10,
+					num1: 100,
+					num2: 1000
+        },
+	      // watch: 侦听器
+	      watch: {
+					// 值是对应回调函数
+        	num: function(now, old) {
+						console.log(now)
+					},
+					// 值是方法名
+					num1: 'console',
+					// 值是包含选项的对象
+					num2: {
+						handler: function(now, old) {
+							console.log(now)
+						},
+						// 添加下面参数后，该回调会在任何被侦听的对象的 property 改变时被调用，
+						// 不论其被嵌套多深。deep 默认为 false。
+						deep: true,
+						// 添加下面参数后，该回调将会在侦听开始之后被立即调用。immediate 默认为 false。
+						immediate: true
+					}
+	      },
+	      // methods：方法
+	      methods: {
+        	console: function () {
+		        console.log(this.num1)
+	        },
+	      }
+      })
+    </script>
+    
+  </body>
+    
+</html>
