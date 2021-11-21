@@ -1,10 +1,10 @@
 // 创建 Vue Router 实例分 4 步：
-// 1.注入插件；2.配置路由和组件之间的应用关系；3.创建 router 实例；4.传出 router 实例。
+// 1. 注入插件；2. 配置路由和组件之间的应用关系；3. 创建 router 实例；4. 传出 router 实例。
 
-import VueRouter from 'vue-router';
 import Vue from 'vue';
+import VueRouter from 'vue-router';
 
-// 1.注入插件。
+// 1. 注入插件。
 Vue.use(VueRouter);
 
 // import HelloWorld from '@/components/HelloWorld'
@@ -13,11 +13,11 @@ VueRouter.prototype.push = function push(location) {
   return originalPush.call(this, location).catch(err => err)
 }
 
-// 2.配置路由和组件之间的应用关系。
+// 2. 配置路由和组件之间的应用关系。
 
-// Vue Router 路由有两种，静态路由：页面 path 路径是确定的。动态路由：页面 path 路径不确定。
+// (1) Vue Router 路由有两种，静态路由：页面 path 路径是确定的。动态路由：页面 path 路径不确定。
 // 动态路由需要传入参数以确定 path 路径，需要 path 和 Component 的匹配关系。
-// 动态路由也是传递数据的一种方式。传递参数主要有两种方式: params 和 query，获取参数一种方式：$route。
+// 动态路由也是传递数据的一种方式。传递参数主要有两种方式: params 和 query；获取参数一种方式：$route。
 // params 类型传递方式: 在 path 后跟对应的值。
 // query 类型传递方式: 对象中使用 query 的 key 传递，传递大量数据时可使用此方式。
 // 获取参数需要通过路由对象 $route，在使用 Vue Router 的应用中，路由对象会被注入每个组件中，
@@ -25,13 +25,13 @@ VueRouter.prototype.push = function push(location) {
 // 还有 URL 匹配到的路由记录。路由对象是不可变的，每次成功的导航后都会产生一个新的对象。
 // 注意：在组件中，this.$router 为 Vue Router 实例，this.$route 为当前激活的路由信息对象。
 
-// “导航”表示路由正在发生改变。Vue Router 提供的导航守卫主要用来通过跳转或取消的方式守卫导航。
+// (2) “导航”表示路由正在发生改变。Vue Router 提供的导航守卫主要用来通过跳转或取消的方式守卫导航。
 // 有多种机会植入路由导航过程中：全局的、路由独享的,、组件内的。
 // 全局的：router.beforeEach、，router.beforeResolve、router.afterEach；
 // 路由独享的：beforeEnter；
 // 组件内的：beforeRouteEnter、beforeRouteUpdate、beforeRouteLeave。
 
-// 打包构建应用时，Javascript 包会变得非常大，影响页面加载。若不同路由对应的组件分割成
+// (3) 打包构建应用时，Javascript 包会变得非常大，影响页面加载。若不同路由对应的组件分割成
 // 不同的代码块，然后当路由被访问的时候才加载对应组件，这样更高效的做法，叫做懒加载。
 
 // 配置组件和路径的映射关系（全加载）
@@ -120,7 +120,7 @@ const routes = [
   }
 ];
 
-// 3.创建 router 实例。
+// 3. 创建 router 实例。
 const router = new VueRouter({
   // 引入配置
   routes,
@@ -145,5 +145,5 @@ router.afterEach((to, from) => {
   console.log('这是全局后置钩子导航守卫。');
 })
 
-// 4.传出 router 实例。
+// 4. 传出 router 实例。
 export default router;
