@@ -20,15 +20,18 @@
 					然后在子组件使用时给包含所有插槽 prop 的对象命名，接着使用该对象。 -->
 
 			<!-- 使用作用域插槽默认内容： -->
+			<p>-------------------------</p>
       <cpn></cpn>
 			
 			<!-- 在子组件使用时给包含所有插槽 prop 的对象命名，接着使用该对象： -->
-	    <cpn>
+			<p>-------------------------</p>
+			<cpn>
 				<template v-slot:ok='slotsss'><span v-for="item in slotsss.a">{{item}}-</span></template>
 	    </cpn>
 
 			<!-- 在子组件使用时给包含所有插槽 prop 的对象命名，接着使用该对象：（这里使用语法糖） -->
-	    <cpn>
+	    <p>-------------------------</p>
+			<cpn>
 				<template #ok="slotssa">
 			    <span>{{slotssa.a.join(' * ')}}</span>
 					<br>
